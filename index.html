@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gıda Fotogrametrisi: Kek 3B'dir</title>
+  <meta name="description" content="Gıda fotogrametrisi, brokoli ve ev yapımı kek taraması hakkında Türkçe tek sayfalık rehber.">
+  <style>
+    :root {
+      --bg: #f5f3ef;
+      --surface: #fffdf9;
+      --ink: #24211d;
+      --muted: #6e675e;
+      --accent: #a34b2d;
+      --accent-dark: #6f2f1e;
+      --line: #e6ded4;
+      --shadow: 0 18px 50px rgba(71, 48, 32, .10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+    a { color: var(--accent-dark); }
+    .page { max-width: 1080px; margin: 0 auto; padding: 28px 22px 64px; }
+    .hero {
+      overflow: hidden;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #291d18, #7e3b27 52%, #d28b61);
+      color: #fffaf5;
+      box-shadow: var(--shadow);
+    }
+    .hero-copy { padding: 48px 48px 36px; }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #ffd7bd;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { line-height: 1.15; letter-spacing: -.025em; }
+    h1 { max-width: 760px; margin: 0; font-size: clamp(2.2rem, 5vw, 4.8rem); }
+    .hero p { max-width: 720px; margin: 20px 0 0; color: #ffe9d9; font-size: 1.08rem; }
+    .hero figure { margin: 0; background: #1d1613; }
+    .hero figure img { display: block; width: 100%; max-height: 430px; object-fit: cover; opacity: .92; }
+    figcaption { padding: 9px 14px; color: var(--muted); background: #faf7f1; font-size: .86rem; }
+    .hero figcaption { color: #e9d8cb; background: #1d1613; }
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 24px 0 38px;
+    }
+    .toc a {
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      text-decoration: none;
+      font-size: .9rem;
+    }
+    .intro, .section {
+      margin-top: 24px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--surface);
+      box-shadow: 0 8px 28px rgba(71, 48, 32, .04);
+    }
+    h2 { margin: 0 0 14px; color: var(--accent-dark); font-size: clamp(1.55rem, 3vw, 2.2rem); }
+    h3 { margin: 24px 0 8px; font-size: 1.2rem; }
+    p { margin: 0 0 14px; }
+    ul, ol { padding-left: 1.35rem; }
+    li + li { margin-top: 7px; }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 22px 0 4px;
+    }
+    figure {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #faf7f1;
+    }
+    figure img { display: block; width: 100%; height: auto; }
+    .video {
+      width: 100%;
+      margin: 22px 0 4px;
+      border-radius: 16px;
+      background: #181411;
+    }
+    .sketchfab-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+    .sketchfab-card iframe {
+      display: block;
+      width: 100%;
+      height: 300px;
+      border: 0;
+    }
+    .sketchfab-card p {
+      margin: 0;
+      padding: 10px 12px 12px;
+      font-size: .84rem;
+      line-height: 1.45;
+    }
+    .sketchfab-card p a { font-weight: 700; }
+    .specs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .spec {
+      padding: 16px;
+      border-radius: 14px;
+      background: #f4ece4;
+      text-align: center;
+    }
+    .spec strong { display: block; color: var(--accent-dark); font-size: 1.25rem; }
+    .note {
+      margin: 20px 0;
+      padding: 16px 18px;
+      border-left: 4px solid var(--accent);
+      background: #fff2e7;
+    }
+    footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: .9rem;
+      text-align: center;
+    }
+    @media (max-width: 700px) {
+      .page { padding: 14px 12px 40px; }
+      .hero-copy, .intro, .section { padding: 24px 20px; }
+      .media-grid, .specs, .sketchfab-grid { grid-template-columns: 1fr; }
+      .hero { border-radius: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Türkçe tek sayfalık çeviri</p>
+        <h1>Gıda Fotogrametrisi: Kek 3B’dir</h1>
+        <p>Yiyecekleri fotoğraflardan 3B modele dönüştürmek için döner tabla, uygun ışık ve Pixpro fotogrametri iş akışının pratik bir özeti.</p>
+      </div>
+      <figure>
+        <img src="3d/1765461943_Food-Photogrammetry-Turntable-Camera-Light-Setup.webp" alt="Döner tabla, kamera ve ışık düzeni">
+        <figcaption>Kamera, döner tabla ve ışık düzeni</figcaption>
+      </figure>
+    </header>
+
+    <nav class="toc" aria-label="İçindekiler">
+      <a href="#teknikler">Teknikler</a>
+      <a href="#brokoli">Brokoli taraması</a>
+      <a href="#kek">Kek taraması</a>
+      <a href="#isleme">Veri işleme</a>
+      <a href="#sketchfab">Sketchfab</a>
+    </nav>
+
+    <section class="intro">
+      <p>Gıda ürünlerini taramak hem eğlenceli hem de zaman zaman kullanışlı olabilir. En belirgin kullanım alanı; görsel efekt, sanal gerçeklik ve oyun sektörleri için 3B varlıklar oluşturmaktır. Ev yapımı bir keki arkadaşlara ve aileye 3B olarak göstermek ise daha özel bir kullanım alanıdır. Bir kameranız ve biraz merakınız varsa, ihtiyacınız olan tek şey doğru yönlendirmedir.</p>
+      <p>Bu çalışmada yiyecekler, nesnenin etrafında dairesel hareketlerle fotoğraflanarak taranıyor ve süreç adım adım açıklanıyor.</p>
+    </section>
+
+    <section class="section" id="teknikler">
+      <h2>Fotogrametri teknikleri</h2>
+      <p>İlk yöntem, kameranın nesnenin etrafında dolaştığı klasik yörüngesel taramadır. Kamera birkaç derecede bir fotoğraf çeker ve fotogrametri için gerekli görüntü örtüşmesi sağlanır. Bu, hem hava fotoğrafçılığında hem de karasal 3B taramalarda yaygın bir tekniktir.</p>
+      <p>İkinci yöntem döner tabla tekniğidir. Kamera sabit kalır, nesne döner tabla üzerinde döndürülür. Ancak arka plan ve ışık daha dikkatli hazırlanmalıdır. Fotoğrafların tamamında sabit kalan ayrıntılar, görüntülerin hizalanmasını bozabilir.</p>
+      <p>Üçüncü yöntem çapraz polarizasyon fotogrametrisidir. Polarizasyon filtreleri yansımaları azaltır. Özellikle parlak ve yansıtıcı nesnelerde etkilidir; fakat ek ekipman gerektirir.</p>
+      <video class="video" controls preload="metadata" playsinline>
+        <source src="3d/MovingSubject-Vs-MovingCamera.mp4" type="video/mp4">
+        Tarayıcınız video etiketini desteklemiyor.
+      </video>
+      <p class="note"><strong>Kurulum:</strong> Elektrikli döner tabla, kamera, lens, tripod, video ışıkları ve kamerayı iki saniyede bir tetikleyen kablolu intervalometre kullanıldı. Beyaz kâğıtlar, ışığı yansıtarak daha yumuşak gölgeler ve daha düşük kontrast sağladı.</p>
+    </section>
+
+    <section class="section" id="brokoli">
+      <h2>Brokoli ile ilk deneme</h2>
+      <p>Kek gibi zamanla bozulabilecek bir nesneye geçmeden önce kurulum brokoli üzerinde test edildi. Brokoli, parlak olmadığı ve çok sayıda ayrıntıya sahip olduğu için fotogrametriye uygundur.</p>
+      <p>Kurulumda güçlü bir üst ışık, yanlarda düşük seviyeli dolgu ışıkları ve elektrikli döner tabla kullanıldı. Farklı dönüş hızlarında test çekimleri yapılarak hareket bulanıklığı kontrol edildi. Bulanıklık görüldüğünde dönüş hızı azaltıldı.</p>
+      <div class="specs" aria-label="Brokoli kamera ayarları">
+        <div class="spec"><strong>1/80 sn</strong>Enstantane</div>
+        <div class="spec"><strong>f/22</strong>Diyafram</div>
+        <div class="spec"><strong>ISO 1600</strong>ISO</div>
+      </div>
+      <p>Tam bir dönüşte 56 fotoğraf hedeflendi ve iki saniyelik çekim aralığı kullanıldı. Bu ayar, döner tablanın tam turunu kapsayacak şekilde yeterli görüntü sağladı.</p>
+      <div class="media-grid">
+        <figure><img src="3d/1765462026_Food-Photogrammetry-Broccoli-Photo-Examples.webp" alt="Brokoli fotoğraf örnekleri" loading="lazy"><figcaption>Brokoli fotoğraf örnekleri</figcaption></figure>
+        <figure><img src="3d/1765461961_Food-Photogrammetry-Broccoli-Camera-Positions.webp" alt="Brokoli taramasında kamera konumları" loading="lazy"><figcaption>Kamera konumları</figcaption></figure>
+        <figure><img src="3d/1765462092_Food-Photogrammetry-Broccoli-Dense-Point-Cloud-3D-Mesh-with-Texture.webp" alt="Brokoli yoğun nokta bulutu ve dokulu 3B ağ modeli" loading="lazy"><figcaption>Yoğun nokta bulutu ve dokulu 3B ağ</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section" id="kek">
+      <h2>Ev yapımı kek taraması</h2>
+      <p>Aynı yöntem ev yapımı Napolyon keki üzerinde uygulandı. Kek yansıtıcı olmadığı için çapraz polarizasyon veya farklı bir ışık düzeni gerekmedi.</p>
+      <p>Kek brokoliden daha büyük olduğu için daha geniş açılı bir lens kullanıldı. Nesnenin dış kenarında hareket daha hızlı olduğundan hareket bulanıklığı yeniden kontrol edildi.</p>
+      <div class="specs" aria-label="Kek kamera ayarları">
+        <div class="spec"><strong>1/125 sn</strong>Enstantane</div>
+        <div class="spec"><strong>f/16</strong>Diyafram</div>
+        <div class="spec"><strong>ISO 400</strong>ISO</div>
+      </div>
+      <div class="media-grid">
+        <figure><img src="3d/1765462205_Food-Photogrammetry-Cake-Photo-Examples.webp" alt="Kek fotoğraf örnekleri" loading="lazy"><figcaption>Kek fotoğraf örnekleri</figcaption></figure>
+        <figure><img src="3d/1765462264_Food-Photogrammetry-Cake-Camera-Positions.webp" alt="Kek taramasında kamera konumları" loading="lazy"><figcaption>Kamera konumları</figcaption></figure>
+        <figure><img src="3d/1765462281_Food-Photogrammetry-Cake-Dense-Point-Cloud-3D-Mesh-with-Texture.webp" alt="Kekin yoğun nokta bulutu ve dokulu 3B ağ modeli" loading="lazy"><figcaption>Yoğun nokta bulutu ve dokulu 3B ağ</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section" id="isleme">
+      <h2>Pixpro’da veri işleme</h2>
+      <p>En sağlıklı yöntem, tüm işlemi tek seferde çalıştırmak yerine aşamaları ayrı ayrı uygulamaktır:</p>
+      <ol>
+        <li>Önce 3B yeniden yapılandırma yapılır ve kamera konumları kontrol edilir.</li>
+        <li>Yoğun nokta bulutu oluşturulur.</li>
+        <li>Gereksiz noktalar kırpma kutusuyla veya nokta bulutu düzenleme aracıyla temizlenir.</li>
+        <li>Temizlenmiş nokta bulutundan dokulu 3B ağ modeli oluşturulur.</li>
+      </ol>
+      <div class="media-grid">
+        <figure><img src="3d/1765462407_Food-Photogrammetry-Piece-of-Cake-Photo-Examples.webp" alt="Kek parçası fotoğraf örnekleri" loading="lazy"><figcaption>Fotoğraf örnekleri</figcaption></figure>
+        <figure><img src="3d/1765462460_Food-Photogrammetry-Piece-of-Cake-Camera-Positions.webp" alt="Kek parçası taramasında kamera konumları" loading="lazy"><figcaption>Kamera konumları</figcaption></figure>
+        <figure><img src="3d/1765462480_Food-Photogrammetry-Piece-of-Cake-Dense-Point-Cloud-3D-Mesh-with-Texture.webp" alt="Kek parçasının yoğun nokta bulutu ve dokulu 3B ağ modeli" loading="lazy"><figcaption>Yoğun nokta bulutu ve dokulu 3B ağ</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="section" id="sketchfab">
+      <h2>Sketchfab’de paylaşım</h2>
+      <p>Sketchfab, 3B modelleri paylaşmak için kullanılan popüler platformlardan biridir. Ücretsiz hesaplarda yükleme sınırı 100 MB’tır. Model dosyaları ZIP arşivi olarak yüklendiği için sıkıştırma önemlidir.</p>
+      <p>Örneğin, 2 milyon üçgenli ve 240 MB büyüklüğündeki bir OBJ dosyası ZIP formatında yaklaşık 60 MB’a düşebilir. PNG doku dosyaları fazla küçülmediği için JPEG’e dönüştürülebilir. Bu işlem doku dosyasını yaklaşık altı ila yedi kat küçültebilir. Bunun için OBJ dosyasıyla birlikte gelen MTL dosyasındaki “.png” uzantısını “.jpg” olarak değiştirmek gerekir.</p>
+      <div class="sketchfab-grid">
+        <figure class="sketchfab-card">
+          <iframe title="Piece of Cake Scan" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/c852ce9963c34e73aeadf13bbfd2c76d/embed"></iframe>
+          <p><a href="https://sketchfab.com/3d-models/piece-of-cake-scan-c852ce9963c34e73aeadf13bbfd2c76d" target="_blank" rel="nofollow noopener">Piece of Cake Scan</a> by <a href="https://sketchfab.com/pix-pro" target="_blank" rel="nofollow noopener">Pixpro</a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener">Sketchfab</a></p>
+        </figure>
+        <figure class="sketchfab-card">
+          <iframe title="Cake Scan" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/e7f44ff142274d749eb55337671cdf47/embed"></iframe>
+          <p><a href="https://sketchfab.com/3d-models/cake-scan-e7f44ff142274d749eb55337671cdf47" target="_blank" rel="nofollow noopener">Cake Scan</a> by <a href="https://sketchfab.com/pix-pro" target="_blank" rel="nofollow noopener">Pixpro</a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener">Sketchfab</a></p>
+        </figure>
+        <figure class="sketchfab-card">
+          <iframe title="Broccoli Scan" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/163f8136fd6f43299150f441b4ca2e6f/embed"></iframe>
+          <p><a href="https://sketchfab.com/3d-models/broccoli-scan-163f8136fd6f43299150f441b4ca2e6f" target="_blank" rel="nofollow noopener">Broccoli Scan</a> by <a href="https://sketchfab.com/pix-pro" target="_blank" rel="nofollow noopener">Pixpro</a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener">Sketchfab</a></p>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Sonuç</h2>
+      <p>Yiyecekleri 3B taramak düşündüğümden daha az eğlenceliydi; çünkü tarama tamamlanana kadar onları yiyemiyorsunuz. Özellikle açken dönen ve güzel kokan bir kekle çalışmak oldukça zor. Yine de oluşturulan 3B modeller, yediğimiz şeyleri üç boyutlu olarak hatırlamamızı sağlıyor. En azından kokuları da kaydedip yeniden üretebildiğimiz gün gelene kadar.</p>
+    </section>
+
+    <footer>Türkçe uyarlama • Görseller: <code>3d</code> klasöründeki dosyalar</footer>
+  </main>
+</body>
+</html>
