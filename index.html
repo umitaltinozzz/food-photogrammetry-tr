@@ -4,205 +4,326 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gıda Fotogrametrisi: Kek 3B'dir</title>
-  <meta name="description" content="Gıda fotogrametrisi, brokoli ve ev yapımı kek taraması hakkında Türkçe tek sayfalık rehber.">
+  <meta name="description" content="Yiyecekleri fotoğraflardan 3B modele dönüştürme rehberi: döner tabla kurulumu, ışık ve kamera ayarları, veri işleme adımları ve interaktif 3B örnekler.">
+  <meta name="theme-color" content="#1c1917">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:title" content="Gıda Fotogrametrisi: Kek 3B'dir">
+  <meta property="og:description" content="Döner tabla, ışık düzeni ve fotogrametri iş akışıyla yiyecekleri 3B modele dönüştürme rehberi.">
+  <meta property="og:image" content="3d/1765461943_Food-Photogrammetry-Turntable-Camera-Light-Setup.webp">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍰</text></svg>">
   <style>
     :root {
-      --primary: #8bc53f;
-      --primary-hover: #657934;
-      --ink: #202124;
-      --body: #374151;
-      --muted: #6b7280;
-      --soft: #f5f5f5;
-      --line: #e5e7eb;
-      --max: 1040px;
+      --ink: #1c1917;
+      --body: #44403c;
+      --muted: #78716c;
+      --accent: #b45309;
+      --accent-deep: #7c3d08;
+      --paper: #fffdfa;
+      --sand: #f5f1ea;
+      --line: #e7e1d8;
+      --max: 1060px;
+      --text-width: 720px;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      color: var(--ink);
-      background: #fff;
-      font-family: Inter, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-      line-height: 1.7;
+      color: var(--body);
+      background: var(--paper);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-    a { color: var(--primary-hover); }
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, .96);
-      border-bottom: 1px solid rgba(229, 231, 235, .9);
-      backdrop-filter: blur(12px);
+
+    a { color: var(--accent-deep); text-underline-offset: 3px; }
+    a:hover { color: var(--accent); }
+
+    img, iframe, video { max-width: 100%; }
+
+    /* Okuma ilerleme çubuğu */
+    .progress {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 60;
+      height: 3px;
+      background: transparent;
+      pointer-events: none;
     }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-      max-width: var(--max);
-      min-height: 76px;
-      margin: 0 auto;
-      padding: 18px 20px;
+    .progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      transition: width .08s linear;
     }
-    .brand {
-      color: #111827;
-      font-size: 1.55rem;
-      font-weight: 900;
-      letter-spacing: -.08em;
-      text-decoration: none;
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .narrow { max-width: var(--text-width); margin-left: auto; margin-right: auto; }
+
+    /* Hero */
+    .hero {
+      padding: 84px 0 0;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--sand), var(--paper));
     }
-    .brand span { color: var(--primary); }
-    .main-nav { display: flex; align-items: center; gap: 24px; }
-    .main-nav a {
-      color: #6b7280;
-      font-size: .9rem;
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .main-nav a:hover { color: #111827; }
-    .main-nav .nav-cta {
-      padding: 9px 14px;
-      border-radius: 6px;
-      color: #fff;
-      background: var(--primary);
-    }
-    .main-nav .nav-cta:hover { color: #fff; background: var(--primary-hover); }
-    .reading-progress { height: 4px; background: var(--soft); }
-    .reading-progress span { display: block; width: 0; height: 100%; background: var(--primary); transition: width .08s linear; }
-    .site-main { width: 100%; }
-    .hero { overflow: visible; color: var(--ink); background: var(--soft); }
-    .hero-copy { max-width: 900px; margin: 0 auto; padding: 64px 24px 42px; text-align: center; }
+    .hero-copy { max-width: 820px; margin: 0 auto; text-align: center; }
     .eyebrow {
-      margin: 0 0 11px;
-      color: var(--primary-hover);
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .12em;
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .16em;
       text-transform: uppercase;
     }
-    h1, h2, h3 { line-height: 1.18; letter-spacing: -.035em; }
-    h1 { max-width: 820px; margin: 0 auto; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 850; }
-    .hero p { max-width: 720px; margin: 18px auto 0; color: var(--muted); font-size: 1.05rem; }
-    .hero figure { max-width: var(--max); margin: 0 auto; background: #fff; }
-    .hero figure img { display: block; width: 100%; max-height: none; object-fit: contain; }
-    figcaption { padding: 8px 14px; color: var(--muted); background: #fff; font-size: .84rem; }
-    .toc {
+    h1, h2, h3 { color: var(--ink); font-family: var(--serif); line-height: 1.16; letter-spacing: -.02em; }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.3rem, 5.4vw, 3.9rem);
+      font-weight: 600;
+    }
+    .lede {
+      max-width: 640px;
+      margin: 20px auto 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+    .meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 22px;
+      justify-content: center;
+      gap: 10px 22px;
+      margin: 26px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: .82rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .hero figure { margin: 52px 0 0; }
+    .hero figure img { border-radius: 0; }
+
+    /* İçindekiler */
+    .toc { border-bottom: 1px solid var(--line); background: var(--paper); }
+    .toc-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 28px;
       max-width: var(--max);
       margin: 0 auto;
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--line);
+      padding: 15px 24px;
     }
     .toc a {
-      padding: 0;
       color: var(--muted);
-      background: transparent;
       font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .04em;
+      font-weight: 600;
+      letter-spacing: .08em;
       text-decoration: none;
       text-transform: uppercase;
     }
-    .toc a:hover { color: var(--primary-hover); }
-    .intro, .section {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 30px 20px 0;
-      border: 0;
-      border-radius: 0;
+    .toc a:hover { color: var(--ink); }
+
+    /* İçerik */
+    section { scroll-margin-top: 24px; }
+    .intro { padding-top: 58px; }
+    .intro p:first-child::first-letter {
+      float: left;
+      margin: 8px 10px 0 0;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 3.6rem;
+      line-height: .78;
+    }
+    h2 {
+      margin: 68px 0 18px;
+      font-size: clamp(1.6rem, 3.1vw, 2.3rem);
+      font-weight: 600;
+    }
+    h2::after {
+      content: "";
+      display: block;
+      width: 46px;
+      height: 2px;
+      margin-top: 16px;
+      background: var(--accent);
+    }
+    p { margin: 0 0 18px; }
+    ol, ul { margin: 0 0 18px; padding-left: 1.3rem; }
+    li + li { margin-top: 8px; }
+    ol li::marker { color: var(--accent); font-weight: 700; }
+
+    /* Görseller */
+    figure { margin: 0; }
+    figure img { display: block; width: 100%; height: auto; border-radius: 4px; }
+    figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .84rem;
+      line-height: 1.5;
+    }
+    /* Görseller metin sütununu aşarak tam genişlikte gösterilir */
+    .media, .media-grid, .video, .models {
+      width: min(var(--max), calc(100vw - 48px));
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+    .media { margin-top: 40px; margin-bottom: 40px; }
+    .media-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    .video {
+      display: block;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      border-radius: 4px;
+      background: #1c1917;
+    }
+
+    /* Kamera ayarları */
+    .specs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0;
+      margin: 32px 0;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--sand);
+    }
+    .spec { padding: 18px 20px; border-right: 1px solid var(--line); }
+    .spec:last-child { border-right: 0; }
+    .spec strong {
+      display: block;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: -.01em;
+    }
+    .spec span {
+      color: var(--muted);
+      font-size: .74rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .note {
+      margin: 32px 0;
+      padding: 20px 24px;
+      border-left: 3px solid var(--accent);
+      background: var(--sand);
+      font-size: .98rem;
+    }
+    .note p:last-child { margin-bottom: 0; }
+
+    /* 3B gömülü modeller */
+    .models { display: grid; gap: 28px; margin-top: 40px; margin-bottom: 0; }
+    .model {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 4px;
       background: #fff;
-      box-shadow: none;
     }
-    .intro { max-width: 900px; padding-top: 46px; }
-    h2 { margin: 52px 0 16px; color: var(--ink); font-size: clamp(1.55rem, 3vw, 2.25rem); font-weight: 800; }
-    h3 { margin: 24px 0 8px; font-size: 1.2rem; }
-    p { margin: 0 0 16px; color: var(--body); font-size: 1.02rem; line-height: 1.82; }
-    ul, ol { padding-left: 1.35rem; color: var(--body); }
-    li + li { margin-top: 7px; }
-    .media-grid { display: block; margin: 26px 0 4px; }
-    figure { margin: 0 0 26px; overflow: hidden; border: 0; border-radius: 6px; background: transparent; }
-    figure img { display: block; width: 100%; height: auto; border-radius: 6px; }
-    .video { display: block; width: 100%; max-height: 520px; margin: 26px 0; border-radius: 6px; background: #111827; }
-    .sketchfab-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 26px; }
-    .sketchfab-card { border: 1px solid var(--line); border-radius: 6px; background: #fff; box-shadow: 0 8px 24px rgba(17, 24, 39, .06); }
-    .sketchfab-card iframe { display: block; width: 100%; height: 520px; border: 0; }
-    .sketchfab-card p { margin: 0; padding: 12px 15px 15px; color: var(--muted); font-size: .84rem; line-height: 1.45; }
-    .sketchfab-card p a { font-weight: 700; }
-    .specs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 24px 0; }
-    .spec { padding: 16px; border-left: 3px solid var(--primary); background: var(--soft); text-align: left; }
-    .spec strong { display: block; color: var(--ink); font-size: 1.2rem; }
-    .note { margin: 24px 0; padding: 17px 20px; border-left: 4px solid var(--primary); background: var(--soft); }
-    .cta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      margin-top: 76px;
-      padding: 42px max(20px, calc((100% - var(--max)) / 2));
-      color: #fff;
-      background: var(--primary);
+    .model iframe { display: block; width: 100%; height: 480px; border: 0; }
+    .model figcaption {
+      margin: 0;
+      padding: 14px 18px;
+      border-top: 1px solid var(--line);
+      background: var(--paper);
+      font-size: .82rem;
     }
-    .cta h2 { margin: 0 0 8px; color: #fff; }
-    .cta p { margin: 0; color: #f5ffe9; }
-    .cta a { display: inline-flex; flex-shrink: 0; padding: 11px 16px; border-radius: 6px; color: #fff; background: var(--primary-hover); text-decoration: none; font-weight: 700; }
-    footer { padding: 24px 20px 42px; color: var(--muted); font-size: .86rem; text-align: center; }
+
+    .closing {
+      margin: 84px 0 0;
+      padding: 54px 0;
+      border-top: 1px solid var(--line);
+      background: var(--sand);
+    }
+    .closing h2 { margin-top: 0; }
+
+    footer {
+      padding: 32px 24px 48px;
+      color: var(--muted);
+      font-size: .84rem;
+      text-align: center;
+    }
+    footer p { margin: 0 0 6px; }
+
     @media (max-width: 760px) {
-      .header-inner { min-height: 64px; padding: 14px 16px; }
-      .main-nav { gap: 13px; }
-      .main-nav a:not(.nav-cta) { display: none; }
-      .hero-copy { padding: 48px 20px 34px; }
-      .intro, .section { padding-right: 20px; padding-left: 20px; }
-      .specs { grid-template-columns: 1fr; }
-      .sketchfab-card iframe { height: 400px; }
-      .cta { display: block; padding: 34px 20px; }
-      .cta a { margin-top: 18px; }
+      body { font-size: 16px; }
+      .hero { padding-top: 56px; }
+      .hero figure { margin-top: 38px; }
+      .intro { padding-top: 42px; }
+      h2 { margin-top: 52px; }
+      .spec { border-right: 0; border-bottom: 1px solid var(--line); }
+      .spec:last-child { border-bottom: 0; }
+      .model iframe { height: 340px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .progress span { transition: none; }
+    }
+
+    @media print {
+      .progress, .toc, .video, .models { display: none; }
+      body { font-size: 11pt; }
+      .hero { background: none; }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="#top" aria-label="Pixpro Türkçe rehber">PIXPRO<span>.</span></a>
-      <nav class="main-nav" aria-label="Ana menü">
-        <a href="#teknikler">Özellikler</a>
-        <a href="#isleme">Ürün</a>
-        <a href="#sketchfab">Blog</a>
-        <a href="https://www.pix-pro.com/contact" target="_blank" rel="noopener">İletişim</a>
-        <a class="nav-cta" href="https://www.pix-pro.com/plans-and-pricing" target="_blank" rel="noopener">Ücretsiz dene</a>
-      </nav>
-    </div>
-  </header>
-  <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
-  <main class="site-main" id="top">
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+
+  <main id="top">
     <header class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Türkçe tek sayfalık çeviri</p>
-        <h1>Gıda Fotogrametrisi: Kek 3B’dir</h1>
-        <p>Yiyecekleri fotoğraflardan 3B modele dönüştürmek için döner tabla, uygun ışık ve Pixpro fotogrametri iş akışının pratik bir özeti.</p>
+      <div class="wrap">
+        <div class="hero-copy">
+          <p class="eyebrow">Fotogrametri uygulaması</p>
+          <h1>Gıda Fotogrametrisi: Kek 3B’dir</h1>
+          <p class="lede">Yiyecekleri fotoğraflardan 3B modele dönüştürmek için döner tabla kurulumu, ışık ve kamera ayarları ile veri işleme iş akışının pratik bir özeti.</p>
+          <ul class="meta">
+            <li>Döner tabla yöntemi</li>
+            <li>Brokoli &amp; kek örneği</li>
+            <li>3B model çıktıları</li>
+          </ul>
+        </div>
+        <figure>
+          <img src="3d/1765461943_Food-Photogrammetry-Turntable-Camera-Light-Setup.webp" alt="Döner tabla, kamera ve ışık düzeninden oluşan çekim kurulumu" width="1600" height="900">
+          <figcaption>Kamera, döner tabla ve ışık düzeninden oluşan çekim kurulumu.</figcaption>
+        </figure>
       </div>
-      <figure>
-        <img src="3d/1765461943_Food-Photogrammetry-Turntable-Camera-Light-Setup.webp" alt="Döner tabla, kamera ve ışık düzeni">
-        <figcaption>Kamera, döner tabla ve ışık düzeni</figcaption>
-      </figure>
     </header>
 
     <nav class="toc" aria-label="İçindekiler">
-      <a href="#teknikler">Teknikler</a>
-      <a href="#brokoli">Brokoli taraması</a>
-      <a href="#kek">Kek taraması</a>
-      <a href="#isleme">Veri işleme</a>
-      <a href="#sketchfab">Sketchfab</a>
+      <div class="toc-inner">
+        <a href="#teknikler">Teknikler</a>
+        <a href="#brokoli">Brokoli taraması</a>
+        <a href="#kek">Kek taraması</a>
+        <a href="#isleme">Veri işleme</a>
+        <a href="#modeller">3B modeller</a>
+        <a href="#sonuc">Sonuç</a>
+      </div>
     </nav>
 
-    <section class="intro">
+    <section class="wrap narrow intro">
       <p>Gıda ürünlerini taramak hem eğlenceli hem de zaman zaman kullanışlı olabilir. En belirgin kullanım alanı; görsel efekt, sanal gerçeklik ve oyun sektörleri için 3B varlıklar oluşturmaktır. Ev yapımı bir keki arkadaşlara ve aileye 3B olarak göstermek ise daha özel bir kullanım alanıdır. Bir kameranız ve biraz merakınız varsa, ihtiyacınız olan tek şey doğru yönlendirmedir.</p>
       <p>Bu çalışmada yiyecekler, nesnenin etrafında dairesel hareketlerle fotoğraflanarak taranıyor ve süreç adım adım açıklanıyor.</p>
     </section>
 
-    <section class="section" id="teknikler">
+    <section class="wrap narrow" id="teknikler">
       <h2>Fotogrametri teknikleri</h2>
       <p>İlk yöntem, kameranın nesnenin etrafında dolaştığı klasik yörüngesel taramadır. Kamera birkaç derecede bir fotoğraf çeker ve fotogrametri için gerekli görüntü örtüşmesi sağlanır. Bu, hem hava fotoğrafçılığında hem de karasal 3B taramalarda yaygın bir tekniktir.</p>
       <p>İkinci yöntem döner tabla tekniğidir. Kamera sabit kalır, nesne döner tabla üzerinde döndürülür. Ancak arka plan ve ışık daha dikkatli hazırlanmalıdır. Fotoğrafların tamamında sabit kalan ayrıntılar, görüntülerin hizalanmasını bozabilir.</p>
@@ -211,44 +332,64 @@
         <source src="3d/MovingSubject-Vs-MovingCamera.mp4" type="video/mp4">
         Tarayıcınız video etiketini desteklemiyor.
       </video>
-      <p class="note"><strong>Kurulum:</strong> Elektrikli döner tabla, kamera, lens, tripod, video ışıkları ve kamerayı iki saniyede bir tetikleyen kablolu intervalometre kullanıldı. Beyaz kâğıtlar, ışığı yansıtarak daha yumuşak gölgeler ve daha düşük kontrast sağladı.</p>
+      <div class="note">
+        <p><strong>Kurulum:</strong> Elektrikli döner tabla, kamera, lens, tripod, video ışıkları ve kamerayı iki saniyede bir tetikleyen kablolu intervalometre kullanıldı. Beyaz kâğıtlar, ışığı yansıtarak daha yumuşak gölgeler ve daha düşük kontrast sağladı.</p>
+      </div>
     </section>
 
-    <section class="section" id="brokoli">
+    <section class="wrap narrow" id="brokoli">
       <h2>Brokoli ile ilk deneme</h2>
       <p>Kek gibi zamanla bozulabilecek bir nesneye geçmeden önce kurulum brokoli üzerinde test edildi. Brokoli, parlak olmadığı ve çok sayıda ayrıntıya sahip olduğu için fotogrametriye uygundur.</p>
       <p>Kurulumda güçlü bir üst ışık, yanlarda düşük seviyeli dolgu ışıkları ve elektrikli döner tabla kullanıldı. Farklı dönüş hızlarında test çekimleri yapılarak hareket bulanıklığı kontrol edildi. Bulanıklık görüldüğünde dönüş hızı azaltıldı.</p>
-      <div class="specs" aria-label="Brokoli kamera ayarları">
-        <div class="spec"><strong>1/80 sn</strong>Enstantane</div>
-        <div class="spec"><strong>f/22</strong>Diyafram</div>
-        <div class="spec"><strong>ISO 1600</strong>ISO</div>
+      <div class="specs" aria-label="Brokoli çekimi kamera ayarları">
+        <div class="spec"><strong>1/80 sn</strong><span>Enstantane</span></div>
+        <div class="spec"><strong>f/22</strong><span>Diyafram</span></div>
+        <div class="spec"><strong>ISO 1600</strong><span>ISO</span></div>
       </div>
       <p>Tam bir dönüşte 56 fotoğraf hedeflendi ve iki saniyelik çekim aralığı kullanıldı. Bu ayar, döner tablanın tam turunu kapsayacak şekilde yeterli görüntü sağladı.</p>
+      <figure class="media">
+        <img src="3d/1765462026_Food-Photogrammetry-Broccoli-Photo-Examples.webp" alt="Brokoli taramasında çekilen fotoğraflardan örnekler" loading="lazy">
+        <figcaption>Brokoli taramasından fotoğraf örnekleri.</figcaption>
+      </figure>
       <div class="media-grid">
-        <figure><img src="3d/1765462026_Food-Photogrammetry-Broccoli-Photo-Examples.webp" alt="Brokoli fotoğraf örnekleri" loading="lazy"><figcaption>Brokoli fotoğraf örnekleri</figcaption></figure>
-        <figure><img src="3d/1765461961_Food-Photogrammetry-Broccoli-Camera-Positions.webp" alt="Brokoli taramasında kamera konumları" loading="lazy"><figcaption>Kamera konumları</figcaption></figure>
-        <figure><img src="3d/1765462092_Food-Photogrammetry-Broccoli-Dense-Point-Cloud-3D-Mesh-with-Texture.webp" alt="Brokoli yoğun nokta bulutu ve dokulu 3B ağ modeli" loading="lazy"><figcaption>Yoğun nokta bulutu ve dokulu 3B ağ</figcaption></figure>
+        <figure>
+          <img src="3d/1765461961_Food-Photogrammetry-Broccoli-Camera-Positions.webp" alt="Brokoli taramasında hesaplanan kamera konumları" loading="lazy">
+          <figcaption>Hesaplanan kamera konumları.</figcaption>
+        </figure>
+        <figure>
+          <img src="3d/1765462092_Food-Photogrammetry-Broccoli-Dense-Point-Cloud-3D-Mesh-with-Texture.webp" alt="Brokolinin yoğun nokta bulutu ve dokulu 3B ağ modeli" loading="lazy">
+          <figcaption>Yoğun nokta bulutu ve dokulu 3B ağ.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="section" id="kek">
+    <section class="wrap narrow" id="kek">
       <h2>Ev yapımı kek taraması</h2>
       <p>Aynı yöntem ev yapımı Napolyon keki üzerinde uygulandı. Kek yansıtıcı olmadığı için çapraz polarizasyon veya farklı bir ışık düzeni gerekmedi.</p>
       <p>Kek brokoliden daha büyük olduğu için daha geniş açılı bir lens kullanıldı. Nesnenin dış kenarında hareket daha hızlı olduğundan hareket bulanıklığı yeniden kontrol edildi.</p>
-      <div class="specs" aria-label="Kek kamera ayarları">
-        <div class="spec"><strong>1/125 sn</strong>Enstantane</div>
-        <div class="spec"><strong>f/16</strong>Diyafram</div>
-        <div class="spec"><strong>ISO 400</strong>ISO</div>
+      <div class="specs" aria-label="Kek çekimi kamera ayarları">
+        <div class="spec"><strong>1/125 sn</strong><span>Enstantane</span></div>
+        <div class="spec"><strong>f/16</strong><span>Diyafram</span></div>
+        <div class="spec"><strong>ISO 400</strong><span>ISO</span></div>
       </div>
+      <figure class="media">
+        <img src="3d/1765462205_Food-Photogrammetry-Cake-Photo-Examples.webp" alt="Kek taramasında çekilen fotoğraflardan örnekler" loading="lazy">
+        <figcaption>Kek taramasından fotoğraf örnekleri.</figcaption>
+      </figure>
       <div class="media-grid">
-        <figure><img src="3d/1765462205_Food-Photogrammetry-Cake-Photo-Examples.webp" alt="Kek fotoğraf örnekleri" loading="lazy"><figcaption>Kek fotoğraf örnekleri</figcaption></figure>
-        <figure><img src="3d/1765462264_Food-Photogrammetry-Cake-Camera-Positions.webp" alt="Kek taramasında kamera konumları" loading="lazy"><figcaption>Kamera konumları</figcaption></figure>
-        <figure><img src="3d/1765462281_Food-Photogrammetry-Cake-Dense-Point-Cloud-3D-Mesh-with-Texture.webp" alt="Kekin yoğun nokta bulutu ve dokulu 3B ağ modeli" loading="lazy"><figcaption>Yoğun nokta bulutu ve dokulu 3B ağ</figcaption></figure>
+        <figure>
+          <img src="3d/1765462264_Food-Photogrammetry-Cake-Camera-Positions.webp" alt="Kek taramasında hesaplanan kamera konumları" loading="lazy">
+          <figcaption>Hesaplanan kamera konumları.</figcaption>
+        </figure>
+        <figure>
+          <img src="3d/1765462281_Food-Photogrammetry-Cake-Dense-Point-Cloud-3D-Mesh-with-Texture.webp" alt="Kekin yoğun nokta bulutu ve dokulu 3B ağ modeli" loading="lazy">
+          <figcaption>Yoğun nokta bulutu ve dokulu 3B ağ.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="section" id="isleme">
-      <h2>Pixpro’da veri işleme</h2>
+    <section class="wrap narrow" id="isleme">
+      <h2>Verinin işlenmesi</h2>
       <p>En sağlıklı yöntem, tüm işlemi tek seferde çalıştırmak yerine aşamaları ayrı ayrı uygulamaktır:</p>
       <ol>
         <li>Önce 3B yeniden yapılandırma yapılır ve kamera konumları kontrol edilir.</li>
@@ -256,58 +397,70 @@
         <li>Gereksiz noktalar kırpma kutusuyla veya nokta bulutu düzenleme aracıyla temizlenir.</li>
         <li>Temizlenmiş nokta bulutundan dokulu 3B ağ modeli oluşturulur.</li>
       </ol>
+      <figure class="media">
+        <img src="3d/1765462407_Food-Photogrammetry-Piece-of-Cake-Photo-Examples.webp" alt="Bir dilim kekin taramasında çekilen fotoğraflardan örnekler" loading="lazy">
+        <figcaption>Bir dilim kek için fotoğraf örnekleri.</figcaption>
+      </figure>
       <div class="media-grid">
-        <figure><img src="3d/1765462407_Food-Photogrammetry-Piece-of-Cake-Photo-Examples.webp" alt="Kek parçası fotoğraf örnekleri" loading="lazy"><figcaption>Fotoğraf örnekleri</figcaption></figure>
-        <figure><img src="3d/1765462460_Food-Photogrammetry-Piece-of-Cake-Camera-Positions.webp" alt="Kek parçası taramasında kamera konumları" loading="lazy"><figcaption>Kamera konumları</figcaption></figure>
-        <figure><img src="3d/1765462480_Food-Photogrammetry-Piece-of-Cake-Dense-Point-Cloud-3D-Mesh-with-Texture.webp" alt="Kek parçasının yoğun nokta bulutu ve dokulu 3B ağ modeli" loading="lazy"><figcaption>Yoğun nokta bulutu ve dokulu 3B ağ</figcaption></figure>
+        <figure>
+          <img src="3d/1765462460_Food-Photogrammetry-Piece-of-Cake-Camera-Positions.webp" alt="Bir dilim kekin taramasında hesaplanan kamera konumları" loading="lazy">
+          <figcaption>Hesaplanan kamera konumları.</figcaption>
+        </figure>
+        <figure>
+          <img src="3d/1765462480_Food-Photogrammetry-Piece-of-Cake-Dense-Point-Cloud-3D-Mesh-with-Texture.webp" alt="Bir dilim kekin yoğun nokta bulutu ve dokulu 3B ağ modeli" loading="lazy">
+          <figcaption>Yoğun nokta bulutu ve dokulu 3B ağ.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="section" id="sketchfab">
-      <h2>Sketchfab’de paylaşım</h2>
-      <p>Sketchfab, 3B modelleri paylaşmak için kullanılan popüler platformlardan biridir. Ücretsiz hesaplarda yükleme sınırı 100 MB’tır. Model dosyaları ZIP arşivi olarak yüklendiği için sıkıştırma önemlidir.</p>
+    <section class="wrap narrow" id="modeller">
+      <h2>3B modelleri paylaşmak</h2>
+      <p>Sketchfab, 3B modelleri web üzerinde paylaşmak için kullanılan popüler platformlardan biridir. Ücretsiz hesaplarda yükleme sınırı 100 MB’tır. Model dosyaları ZIP arşivi olarak yüklendiği için sıkıştırma önemlidir.</p>
       <p>Örneğin, 2 milyon üçgenli ve 240 MB büyüklüğündeki bir OBJ dosyası ZIP formatında yaklaşık 60 MB’a düşebilir. PNG doku dosyaları fazla küçülmediği için JPEG’e dönüştürülebilir. Bu işlem doku dosyasını yaklaşık altı ila yedi kat küçültebilir. Bunun için OBJ dosyasıyla birlikte gelen MTL dosyasındaki “.png” uzantısını “.jpg” olarak değiştirmek gerekir.</p>
-      <div class="sketchfab-grid">
-        <figure class="sketchfab-card">
-          <iframe title="Piece of Cake Scan" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/c852ce9963c34e73aeadf13bbfd2c76d/embed"></iframe>
-          <p><a href="https://sketchfab.com/3d-models/piece-of-cake-scan-c852ce9963c34e73aeadf13bbfd2c76d" target="_blank" rel="nofollow noopener">Piece of Cake Scan</a> by <a href="https://sketchfab.com/pix-pro" target="_blank" rel="nofollow noopener">Pixpro</a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener">Sketchfab</a></p>
+      <p>Aşağıdaki modeller tarayıcı üzerinden döndürülüp yakınlaştırılabilir.</p>
+      <div class="models">
+        <figure class="model">
+          <iframe title="Bir dilim kek taraması" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/c852ce9963c34e73aeadf13bbfd2c76d/embed"></iframe>
+          <figcaption><a href="https://sketchfab.com/3d-models/piece-of-cake-scan-c852ce9963c34e73aeadf13bbfd2c76d" target="_blank" rel="nofollow noopener">Piece of Cake Scan</a> — Sketchfab üzerinde görüntüle.</figcaption>
         </figure>
-        <figure class="sketchfab-card">
-          <iframe title="Cake Scan" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/e7f44ff142274d749eb55337671cdf47/embed"></iframe>
-          <p><a href="https://sketchfab.com/3d-models/cake-scan-e7f44ff142274d749eb55337671cdf47" target="_blank" rel="nofollow noopener">Cake Scan</a> by <a href="https://sketchfab.com/pix-pro" target="_blank" rel="nofollow noopener">Pixpro</a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener">Sketchfab</a></p>
+        <figure class="model">
+          <iframe title="Kek taraması" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/e7f44ff142274d749eb55337671cdf47/embed"></iframe>
+          <figcaption><a href="https://sketchfab.com/3d-models/cake-scan-e7f44ff142274d749eb55337671cdf47" target="_blank" rel="nofollow noopener">Cake Scan</a> — Sketchfab üzerinde görüntüle.</figcaption>
         </figure>
-        <figure class="sketchfab-card">
-          <iframe title="Broccoli Scan" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/163f8136fd6f43299150f441b4ca2e6f/embed"></iframe>
-          <p><a href="https://sketchfab.com/3d-models/broccoli-scan-163f8136fd6f43299150f441b4ca2e6f" target="_blank" rel="nofollow noopener">Broccoli Scan</a> by <a href="https://sketchfab.com/pix-pro" target="_blank" rel="nofollow noopener">Pixpro</a> on <a href="https://sketchfab.com" target="_blank" rel="nofollow noopener">Sketchfab</a></p>
+        <figure class="model">
+          <iframe title="Brokoli taraması" loading="lazy" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/163f8136fd6f43299150f441b4ca2e6f/embed"></iframe>
+          <figcaption><a href="https://sketchfab.com/3d-models/broccoli-scan-163f8136fd6f43299150f441b4ca2e6f" target="_blank" rel="nofollow noopener">Broccoli Scan</a> — Sketchfab üzerinde görüntüle.</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Sonuç</h2>
-      <p>Yiyecekleri 3B taramak düşündüğümden daha az eğlenceliydi; çünkü tarama tamamlanana kadar onları yiyemiyorsunuz. Özellikle açken dönen ve güzel kokan bir kekle çalışmak oldukça zor. Yine de oluşturulan 3B modeller, yediğimiz şeyleri üç boyutlu olarak hatırlamamızı sağlıyor. En azından kokuları da kaydedip yeniden üretebildiğimiz gün gelene kadar.</p>
+    <section class="closing" id="sonuc">
+      <div class="wrap narrow">
+        <h2>Sonuç</h2>
+        <p>Yiyecek fotogrametrisinde sonucu belirleyen şey pahalı ekipman değil, tekrarlanabilir bir kurulumdur: sabit ve yumuşak ışık, kontrol altında tutulan pozlama ve netlik, hareket bulanıklığı oluşturmayan dönüş hızı ve tam tur boyunca yeterli görüntü örtüşmesi. Aynı düzen bir kez kurulduğunda farklı ürünler için tekrar tekrar kullanılabilir.</p>
+        <p>Veri işleme tarafında da aşamaları ayrı ayrı yürütmek, hatayı erken görmeyi sağlar; kamera konumları doğrulanmadan yoğun nokta bulutuna geçmek zaman kaybettirir. Parlak soslar, saydam bardaklar ve düz beyaz tabaklar gibi zor yüzeylerde ise ışık düzeni veya çapraz polarizasyon ayrıca değerlendirilmelidir.</p>
+        <p>Ortaya çıkan modeller yalnızca bir görsel değil; web, AR ve ürün sunumlarında doğrudan kullanılabilen, ölçüsü ve dokusu korunmuş 3B varlıklardır.</p>
+      </div>
     </section>
 
-    <section class="cta">
-      <div>
-        <p class="eyebrow">Pixpro fotogrametri</p>
-        <h2>Yiyecekleri üç boyutlu keşfet</h2>
-        <p>Fotoğraflardan 3B modeller üretmek için kendi tarama iş akışını oluştur.</p>
-      </div>
-      <a href="https://www.pix-pro.com/plans-and-pricing" target="_blank" rel="noopener">Pixpro’yu keşfet</a>
-    </section>
-    <footer>Türkçe uyarlama • Görseller: <code>3d</code> klasöründeki dosyalar • Orijinal kaynak: Pixpro</footer>
+    <footer>
+      <p>Türkçe uyarlama. Görseller, video ve 3B modeller kaynak çalışmaya aittir.</p>
+      <p><a href="#top">Başa dön</a></p>
+    </footer>
   </main>
+
   <script>
-    const progressBar = document.getElementById('reading-progress-bar');
-    const updateReadingProgress = () => {
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-      progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
-    };
-    window.addEventListener('scroll', updateReadingProgress, { passive: true });
-    window.addEventListener('resize', updateReadingProgress);
-    updateReadingProgress();
+    (function () {
+      var bar = document.getElementById('progress-bar');
+      var update = function () {
+        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        var progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+        bar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+      };
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
   </script>
 </body>
 </html>
